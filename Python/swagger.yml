@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  title: "RP Flask REST API"
+  description: "An API about manipulating trails"
+  version: "1.0.0"
+
+servers:
+  - url: "/api"
+
+paths:
+  /trails:
+    get:
+      operationId: "app.get_trails"  
+      tags:
+        - "Trails"
+      summary: "Fetch a list of trails"
+      responses:
+        "200":
+          description: "Successfully fetched trail list"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    trail_id:
+                      type: integer
+                      description: "The ID of the trail"
+                    trail_name:
+                      type: string
+                      description: "The name of the trail"
+                    trail_summary:
+                      type: string
+                      description: "The summary of the trail"
+                    trail_description:
+                      type: string
+                      description: "The description of the trail"
+                    difficulty:
+                      type: string
+                      description: "The difficulty of the trail"
+                    location:
+                      type: string
+                      description: "The location of the trail"
+                    trail_length:
+                      type: number
+                      format: decimal
+                      description: "The length of the trail"
+                    trail_elevation:
+                      type: integer
+                      description: "The elevation of the trail"
+                    route_type:
+                      type: string
+                      description: "The route type of the trail"
+                    trail_feature:
+                      type: string
+                      description: "The features of the trail"
+  
+  /createtrail:
+    post:
+      operationId: "app.create_trail"  
+      tags:
+        - "Create Trail"
+      summary: "Creates a trail"
+      responses:
+        "200":
+          description: "Successfully created a trail"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:  
+                  trail_id:
+                    type: integer
+                    description: "The ID of the trail"
+                  trail_name:
+                    type: string
+                    description: "The name of the trail"
+                  trail_summary:
+                    type: string
+                    description: "The summary of the trail"
+                  trail_description:
+                    type: string
+                    description: "The description of the trail"
+                  difficulty:
+                    type: string
+                    description: "The difficulty of the trail"
+                  location:
+                    type: string
+                    description: "The location of the trail"
+                  trail_length:
+                    type: number
+                    format: decimal
+                    description: "The length of the trail"
+                  trail_elevation:
+                    type: integer
+                    description: "The elevation of the trail"
+                  route_type:
+                    type: string
+                    description: "The route type of the trail"
+                  trail_feature:
+                    type: string
+                    description: "The features of the trail"

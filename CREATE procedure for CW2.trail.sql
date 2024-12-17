@@ -42,7 +42,6 @@ BEGIN
         VALUES(
             @newtrailid
         )
-
         DECLARE @newtrailfeatureid INT = SCOPE_IDENTITY();
 
         INSERT INTO CW2.feature(
@@ -51,15 +50,14 @@ BEGIN
         )
         VALUES(
             @newtrailfeatureid,
-            @trail_feature
+            @trail_feature  
         )
-
 
         COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
+
         ROLLBACK TRANSACTION;
         THROW;
     END CATCH;
 END;
-
