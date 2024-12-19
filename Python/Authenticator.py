@@ -1,17 +1,21 @@
 import requests
 
+# Define url
 auth_url = 'https://web.socem.plymouth.ac.uk/COMP2001/auth/api/users'
 
 email = 'tim@plymouth.ac.uk'
 password = 'COMP2001!'
 
+# Create dictionary with credentials
 credentials = {
 'email': email,
 'password': password
 }
 
+# Send POST request with credentials
 response = requests.post(auth_url, json=credentials)
 
+# Handle response  
 if response.status_code == 200:
     try:
         json_response = response.json()
