@@ -1,9 +1,6 @@
 import requests
 from flask import jsonify, render_template, request
-import connexion
 
-# Initialize the Flask app and add the API
-authenticator = connexion.App(__name__, specification_dir="./")
 
 # Define the external authentication URL
 auth_url = 'https://web.socem.plymouth.ac.uk/COMP2001/auth/api/users'
