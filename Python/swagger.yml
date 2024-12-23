@@ -56,12 +56,25 @@ paths:
                       type: string
                       description: "The features of the trail"
   
-  /createtrail:
+  /createtrail/{email}/{password}:
     post:
       operationId: "app.create_trail"  
       tags:
         - "Trails"
       summary: "Creates a trail"
+      parameters:
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "The user's email"
+        - name: password
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "The user's password"
       responses:
         "200":
           description: "Successfully created a trail"
@@ -69,7 +82,7 @@ paths:
             application/json:
               schema:
                 type: object
-                properties:  
+                properties:
                   trail_id:
                     type: integer
                     description: "The ID of the trail"
@@ -107,10 +120,10 @@ paths:
       operationId: "app.get_trail"  
       tags:
         - "Trails"
-      summary: "Fetch a trails using the trail id"
+      summary: "Fetch a trail using the trail id"
       parameters:
-        - in: path
-          name: trail_id
+        - name: trail_id
+          in: path
           required: true
           schema:
             type: integer
@@ -121,49 +134,59 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    trail_id:
-                      type: integer
-                      description: "The ID of the trail"
-                    trail_name:
-                      type: string
-                      description: "The name of the trail"
-                    trail_summary:
-                      type: string
-                      description: "The summary of the trail"
-                    trail_description:
-                      type: string
-                      description: "The description of the trail"
-                    difficulty:
-                      type: string
-                      description: "The difficulty of the trail"
-                    location:
-                      type: string
-                      description: "The location of the trail"
-                    trail_length:
-                      type: number
-                      format: decimal
-                      description: "The length of the trail"
-                    trail_elevation:
-                      type: integer
-                      description: "The elevation of the trail"
-                    route_type:
-                      type: string
-                      description: "The route type of the trail"
-                    trail_feature:
-                      type: string
-                      description: "The features of the trail"
+                type: object
+                properties:
+                  trail_id:
+                    type: integer
+                    description: "The ID of the trail"
+                  trail_name:
+                    type: string
+                    description: "The name of the trail"
+                  trail_summary:
+                    type: string
+                    description: "The summary of the trail"
+                  trail_description:
+                    type: string
+                    description: "The description of the trail"
+                  difficulty:
+                    type: string
+                    description: "The difficulty of the trail"
+                  location:
+                    type: string
+                    description: "The location of the trail"
+                  trail_length:
+                    type: number
+                    format: decimal
+                    description: "The length of the trail"
+                  trail_elevation:
+                    type: integer
+                    description: "The elevation of the trail"
+                  route_type:
+                    type: string
+                    description: "The route type of the trail"
+                  trail_feature:
+                    type: string
+                    description: "The features of the trail"
 
-  /deletetrail/{trail_id}:
+  /deletetrail/{email}/{password}/{trail_id}:
     delete:
       operationId: "app.delete_trail"
       tags:
         - "Trails"
       summary: "Delete a specific trail by its ID"
       parameters:
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "The user's email"
+        - name: password
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "The user's password"
         - name: trail_id
           in: path
           required: true
@@ -173,7 +196,7 @@ paths:
       responses:
         "200":
           description: "Trail successfully deleted"
-          content: 
+          content:
             application/json:
               schema:
                 type: object
@@ -186,57 +209,71 @@ paths:
         "500":
           description: "Internal server error"
         
-  /updatetrail/{trail_id}:
+  /updatetrail/{email}/{password}/{trail_id}:
     put:
       operationId: "app.update_trail"  
       tags:
         - "Trails"
       summary: "Update the trail based on the id and details provided"
       parameters:
-        - in: path
-          name: trail_id
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "The user's email"
+        - name: password
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "The user's password"
+        - name: trail_id
+          in: path
           required: true
           schema:
             type: integer
-          description: "The ID of the trail"
+          description: "The ID of the trail to update"
       responses:
         "200":
           description: "Successfully updated trail"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    trail_id:
-                      type: integer
-                      description: "The ID of the trail"
-                    trail_name:
-                      type: string
-                      description: "The name of the trail"
-                    trail_summary:
-                      type: string
-                      description: "The summary of the trail"
-                    trail_description:
-                      type: string
-                      description: "The description of the trail"
-                    difficulty:
-                      type: string
-                      description: "The difficulty of the trail"
-                    location:
-                      type: string
-                      description: "The location of the trail"
-                    trail_length:
-                      type: number
-                      format: decimal
-                      description: "The length of the trail"
-                    trail_elevation:
-                      type: integer
-                      description: "The elevation of the trail"
-                    route_type:
-                      type: string
-                      description: "The route type of the trail"
-                    trail_feature:
-                      type: string
-                      description: "The features of the trail"
+                type: object
+                properties:
+                  trail_id:
+                    type: integer
+                    description: "The ID of the trail"
+                  trail_name:
+                    type: string
+                    description: "The name of the trail"
+                  trail_summary:
+                    type: string
+                    description: "The summary of the trail"
+                  trail_description:
+                    type: string
+                    description: "The description of the trail"
+                  difficulty:
+                    type: string
+                    description: "The difficulty of the trail"
+                  location:
+                    type: string
+                    description: "The location of the trail"
+                  trail_length:
+                    type: number
+                    format: decimal
+                    description: "The length of the trail"
+                  trail_elevation:
+                    type: integer
+                    description: "The elevation of the trail"
+                  route_type:
+                    type: string
+                    description: "The route type of the trail"
+                  trail_feature:
+                    type: string
+                    description: "The features of the trail"
+        "404":
+          description: "Trail not found"
+        "500":
+          description: "Internal server error"
