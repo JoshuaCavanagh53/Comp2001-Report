@@ -56,25 +56,12 @@ paths:
                       type: string
                       description: "The features of the trail"
   
-  /createtrail/{email}/{password}:
+  /createtrail:
     post:
       operationId: "app.create_trail"  
       tags:
         - "Trails"
       summary: "Creates a trail"
-      parameters:
-        - name: email
-          in: path
-          required: true
-          schema:
-            type: string
-          description: "The user's email"
-        - name: password
-          in: path
-          required: true
-          schema:
-            type: string
-          description: "The user's password"
       responses:
         "200":
           description: "Successfully created a trail"
@@ -168,31 +155,12 @@ paths:
                     type: string
                     description: "The features of the trail"
 
-  /deletetrail/{email}/{password}/{trail_id}:
+  /deletetrail/{trail_id}:
     delete:
       operationId: "app.delete_trail"
       tags:
         - "Trails"
       summary: "Delete a specific trail by its ID"
-      parameters:
-        - name: email
-          in: path
-          required: true
-          schema:
-            type: string
-          description: "The user's email"
-        - name: password
-          in: path
-          required: true
-          schema:
-            type: string
-          description: "The user's password"
-        - name: trail_id
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: "The ID of the trail to delete"
       responses:
         "200":
           description: "Trail successfully deleted"
@@ -209,31 +177,12 @@ paths:
         "500":
           description: "Internal server error"
         
-  /updatetrail/{email}/{password}/{trail_id}:
+  /updatetrail/{trail_id}:
     put:
       operationId: "app.update_trail"  
       tags:
         - "Trails"
       summary: "Update the trail based on the id and details provided"
-      parameters:
-        - name: email
-          in: path
-          required: true
-          schema:
-            type: string
-          description: "The user's email"
-        - name: password
-          in: path
-          required: true
-          schema:
-            type: string
-          description: "The user's password"
-        - name: trail_id
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: "The ID of the trail to update"
       responses:
         "200":
           description: "Successfully updated trail"

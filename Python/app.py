@@ -66,11 +66,14 @@ def get_trails():
 
 
 # Add a new trail to the database
-def create_trail(email, password):
+def create_trail():
     conn = None
+    
+    trail_data = request.get_json()
+
     try:
 
-        if authenticate(email, password) == "True":
+        if authenticate(trail_data.get("email"), trail_data.get("password")) == "True":
             # Parse JSON data from the request body
             trail_data = request.get_json()
 
@@ -149,11 +152,13 @@ def get_trail(trail_id):
 
 
 # Delete a trail
-def delete_trail(email, password, trail_id):
+def delete_trail(trail_id):
     conn = None
+    
+    details = request.get_json()
     try:
         
-        if authenticate(email, password) == "True":
+        if authenticate(details.get("email"), details.get("password")) == "True":
            conn = get_db_connection()
            cursor = conn.cursor()
    
@@ -177,12 +182,14 @@ def delete_trail(email, password, trail_id):
 
 
 @app.route('/updatetrail/<int:trail_id>', methods=['PUT'])
-def update_trail(email, password, trail_id):
+def update_trail(trail_id):
     conn = None
+    
+    trail_data = request.get_json()
+    
     try:
 
-        if authenticate(email,password) == "True":
-           trail_data = request.get_json()
+        if authenticate(trail_data.get("email"), trail_data.get("password")) == "True":
            conn = get_db_connection()
            cursor = conn.cursor()
    
