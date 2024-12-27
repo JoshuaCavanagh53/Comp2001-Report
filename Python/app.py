@@ -1,7 +1,7 @@
 from flask import jsonify, render_template, request
 import connexion
 import pyodbc
-from authenticator import authenticate
+from Authenticator import authenticate
 
 
 # Initialize the Flask app and add the API
