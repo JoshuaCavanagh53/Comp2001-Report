@@ -58,10 +58,50 @@ paths:
   
   /createtrail:
     post:
-      operationId: "app.create_trail"  
+      operationId: "app.create_trail"
       tags:
         - "Trails"
       summary: "Creates a trail"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trail_name:
+                  type: string
+                  description: "The name of the trail"
+                trail_summary:
+                  type: string
+                  description: "A brief summary of the trail"
+                trail_description:
+                  type: string
+                  description: "A detailed description of the trail"
+                difficulty:
+                  type: string
+                  description: "The difficulty of the trail (e.g., easy, moderate, hard)"
+                location:
+                  type: string
+                  description: "The location of the trail"
+                trail_length:
+                  type: number
+                  format: decimal
+                  description: "The length of the trail in kilometers"
+                trail_elevation:
+                  type: integer
+                  description: "The elevation of the trail in meters"
+                route_type:
+                  type: string
+                  description: "The type of route (e.g., loop, point-to-point)"
+                trail_feature:
+                  type: string
+                  description: "Special features of the trail (e.g., scenic, historical)"
+              required:
+                - trail_name
+                - location
+                - trail_length
+                - difficulty
       responses:
         "200":
           description: "Successfully created a trail"
@@ -78,10 +118,10 @@ paths:
                     description: "The name of the trail"
                   trail_summary:
                     type: string
-                    description: "The summary of the trail"
+                    description: "A summary of the trail"
                   trail_description:
                     type: string
-                    description: "The description of the trail"
+                    description: "A detailed description of the trail"
                   difficulty:
                     type: string
                     description: "The difficulty of the trail"
@@ -100,8 +140,8 @@ paths:
                     description: "The route type of the trail"
                   trail_feature:
                     type: string
-                    description: "The features of the trail"
-  
+                    description: "Features of the trail"
+
   /trail/{trail_id}:
     get:
       operationId: "app.get_trail"  
@@ -161,6 +201,19 @@ paths:
       tags:
         - "Trails"
       summary: "Delete a specific trail by its ID"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      parameters:
+        - name: trail_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: "The ID of the trail to delete"
       responses:
         "200":
           description: "Trail successfully deleted"
@@ -183,6 +236,48 @@ paths:
       tags:
         - "Trails"
       summary: "Update the trail based on the id and details provided"
+      parameters:
+        - name: trail_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: "The ID of the trail to update"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trail_name:
+                  type: string
+                  description: "The name of the trail"
+                trail_summary:
+                  type: string
+                  description: "A brief summary of the trail"
+                trail_description:
+                  type: string
+                  description: "A detailed description of the trail"
+                difficulty:
+                  type: string
+                  description: "The difficulty of the trail (e.g., easy, moderate, hard)"
+                location:
+                  type: string
+                  description: "The location of the trail"
+                trail_length:
+                  type: number
+                  format: decimal
+                  description: "The length of the trail in kilometers"
+                trail_elevation:
+                  type: integer
+                  description: "The elevation of the trail in meters"
+                route_type:
+                  type: string
+                  description: "The type of route (e.g., loop, point-to-point)"
+                trail_feature:
+                  type: string
+                  description: "Special features of the trail (e.g., scenic, historical)"
       responses:
         "200":
           description: "Successfully updated trail"
